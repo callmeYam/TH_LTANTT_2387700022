@@ -1,0 +1,5 @@
+secure.log
+secure.log.sig
+*.gz
+__pycache__/
+*.pyc

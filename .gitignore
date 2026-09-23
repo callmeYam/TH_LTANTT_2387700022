@@ -1,0 +1,9 @@
+*.pyc
+__pycache__/
+.vscode/
+.DS_Store
+venv/
+gitsecure.log
+secure.log
+secure.log.sig
+*.gz

@@ -7,3 +7,11 @@ gitsecure.log
 secure.log
 secure.log.sig
 *.gz
+certs/
+*.pem
+*.egg-info/
+build/
+dist/
+.pytest_cache/
+upload/
+

@@ -4,41 +4,57 @@
 
 ---
 
-## Cấu trúc thư mục (Buổi 1)
+## Mục lục các buổi thực hành
+
+* 📁 [**Buổi 1: Xác thực đầu vào, Git Hooks & Nhật ký an toàn**](Buoi1/Lab1/README.md)
+* 📁 [**Buổi 2: Mã hóa hiện đại & Triển khai Hạ tầng Khóa công khai (PKI / X.509)**](Buoi2/README.md)
+
+---
+
+## Cấu trúc thư mục dự án
 
 ```
 TH_LTANTT_2387700022/
 ├── Buoi1/
 │   ├── Lab1/
 │   │   ├── securevalidator/
-│   │   │   ├── __init__.py
-│   │   │   └── core.py
 │   │   ├── templates/
-│   │   │   └── index.html
 │   │   ├── tests/
-│   │   │   └── test_validators.py
 │   │   ├── README.md
 │   │   ├── app.py
 │   │   └── requirements.txt
 │   ├── Lab2/
 │   │   ├── .githooks/
-│   │   │   └── pre-commit
 │   │   ├── pre-commit-hook-test/
-│   │   │   └── bad.py
 │   │   ├── .gitignore
 │   │   ├── README.md
 │   │   └── requirements.txt
 │   └── Lab3/
 │       ├── securelogger/
-│       │   ├── __init__.py
-│       │   └── logger.py
 │       ├── securevalidator/
-│       │   ├── __init__.py
-│       │   └── core.py
 │       ├── .gitignore
 │       ├── README.md
 │       ├── app.py
 │       └── requirements.txt
+├── Buoi2/
+│   ├── crypto-toolkit/
+│   │   ├── files/
+│   │   ├── securecrypto/
+│   │   ├── tests/
+│   │   ├── requirements.txt
+│   │   ├── setup.py
+│   │   └── README.md
+│   ├── mini-ca/
+│   │   ├── ca_utils.py
+│   │   ├── revoke_utils.py
+│   │   ├── demo.py
+│   │   ├── demo_ui.py
+│   │   ├── requirements.txt
+│   │   └── README.md
+│   ├── ảnh/
+│   ├── pytest.ini
+│   └── README.md
 ├── .gitignore
 └── README.md
 ```
+

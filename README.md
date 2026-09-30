@@ -1,6 +1,5 @@
-# TH_LTANTT_2387700022
+### Họ và Tên: Phạm Gia Huy_2387700022
 ## BÀI TẬP THỰC HÀNH LẬP TRÌNH AN NINH THÔNG TIN
-**Sinh viên:** Phạm Gia Huy — **MSSV:** 2387700022
 
 ---
 

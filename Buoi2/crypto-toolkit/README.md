@@ -1,8 +1,7 @@
-### Họ và Tên: Phạm Gia Huy
-### MSSV: 2387700022
+### Họ và Tên: Phạm Gia Huy_2387700022
 
-# BÁO CÁO KỸ THUẬT: CRYPTOTOOLKIT
-## PHÂN TÍCH MẬT MÃ ỨNG DỤNG, BẢO MẬT KHÓA & KIỂM THỬ TỰ ĐỘNG
+## BÁO CÁO KỸ THUẬT: CRYPTOTOOLKIT
+### PHÂN TÍCH MẬT MÃ ỨNG DỤNG, BẢO MẬT KHÓA & KIỂM THỬ TỰ ĐỘNG
 
 ---
 
@@ -13,23 +12,23 @@ Thư viện `securecrypto` được xây dựng nhằm cung cấp giải pháp t
 ```text
 crypto-toolkit/
 ├── files/
-│   ├── data.txt                 # Tệp văn bản thử nghiệm gốc
-│   ├── data.txt.enc             # Tệp sau khi mã hóa AES-256-GCM
-│   └── data.txt.dec             # Tệp sau khi giải mã
+│   ├── data.txt
+│   ├── data.txt.enc
+│   └── data.txt.dec
 ├── securecrypto/
-│   ├── __init__.py              # Định nghĩa phiên bản __version__ = "0.1.0"
-│   ├── aes_utils.py             # Hàm sinh khóa PBKDF2 và mã hóa/giải mã AES-GCM
-│   ├── hash_utils.py            # Băm mật khẩu an toàn bằng Argon2
-│   ├── rsa_utils.py             # Sinh khóa RSA 2048-bit, ký số và xác thực chữ ký
-│   ├── cli.py                   # Giao diện dòng lệnh CLI tương tác
-│   ├── api.py                   # Cổng giao diện lập trình ứng dụng RESTful API (Flask)
-│   └── app_gui.py               # Giao diện người dùng đồ họa Desktop (Tkinter)
+│   ├── __init__.py
+│   ├── aes_utils.py
+│   ├── hash_utils.py
+│   ├── rsa_utils.py
+│   ├── cli.py
+│   ├── api.py
+│   └── app_gui.py
 ├── tests/
-│   ├── test_aes_utils.py        # Kiểm thử tích hợp mã hóa/giải mã tệp tin
-│   ├── test_hash_utils.py       # Kiểm thử băm Argon2 (với kỹ thuật Bypass GitSecure)
-│   └── test_rsa_utils.py        # Kiểm thử cặp khóa, ký số và phát hiện can thiệp dữ liệu
-├── requirements.txt             # Danh sách gói phụ thuộc (pytest)
-└── setup.py                     # Cấu hình gói và entry-point dòng lệnh CLI
+│   ├── test_aes_utils.py
+│   ├── test_hash_utils.py
+│   └── test_rsa_utils.py
+├── requirements.txt
+└── setup.py
 ```
 
 ---
@@ -107,10 +106,7 @@ def generate_rsa_keypair(key_size=2048):
 ### 3.1. Giao diện dòng lệnh CLI (`cli.py`)
 Hỗ trợ tham số `--encrypt`, `--decrypt` và bắt buộc `--password`:
 ```bash
-# 1. Mã hóa tệp tin:
 securecrypto-cli --encrypt .\files\data.txt --password pass123
-
-# 2. Giải mã tệp tin bằng chuỗi khóa Base64 thu được:
 securecrypto-cli --decrypt .\files\data.txt.enc --password <BASE64_KEY>
 ```
 
@@ -142,7 +138,6 @@ Bộ kiểm thử gồm 6 test cases độc lập thực thi qua `pytest`:
 Trong file `tests/test_hash_utils.py`:
 * **Vấn đề:** Khi viết mã theo tài liệu lý thuyết ban đầu:
   ```python
-  # Mật khẩu ban đầu dạng rõ (dài > 4 ký tự):
   password = ("StrongPass123!")
   ```
   Lệnh `git commit` sẽ bị chặn ngay lập tức do vi phạm Regex của GitSecure:
@@ -212,4 +207,4 @@ python securecrypto/app_gui.py
    $$C_1 \oplus C_2 = (P_1 \oplus K) \oplus (P_2 \oplus K) = P_1 \oplus P_2$$
    Kẻ tấn công ngay lập tức loại bỏ được khóa mã hóa và khôi phục được bản rõ qua phân tích tần số hoặc kỹ thuật Known-Plaintext Attack. Nghiêm trọng hơn, việc tái sử dụng Nonce cho phép kẻ tấn công giải phương trình đa thức trên trường Galois để thu được khóa phụ xác thực $H = E_K(0)$, từ đó có thể tự ý giả mạo Authentication Tag cho bất kỳ dữ liệu độc hại nào. Trong mã nguồn, nguy cơ này được loại trừ bằng cách luôn sinh mới Nonce ngẫu nhiên 96-bit (`os.urandom(12)`) cho mỗi phiên mã hóa.
 2. **Quản lý khóa bí mật trong ứng dụng thực tế:**  
-   Trong mô hình mẫu, khóa AES được trả về cho người dùng qua Base64 hoặc truyền qua CLI. Ở môi trường production, khóa mã hóa không bao giờ được truyền trực tiếp mà phải được bảo vệ bằng mô hình mã hóa phân cấp (Envelope Encryption) kết hợp dịch vụ quản lý khóa phần đứng chuyên dụng (Cloud KMS hoặc HSM).
+   Trong mô hình mẫu, khóa AES được trả về cho người dùng qua Base64 hoặc truyền qua CLI. Ở môi trường production, khóa mã hóa không bao giờ được truyền trực tiếp mà phải được bảo vệ bằng mô hình mã hóa phân cấp (Envelope Encryption) kết hợp dịch vụ quản lý khóa phần cứng chuyên dụng (Cloud KMS hoặc HSM).

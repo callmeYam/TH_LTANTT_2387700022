@@ -1,8 +1,7 @@
-### Họ và Tên: Phạm Gia Huy
-### MSSV: 2387700022
+### Họ và Tên: Phạm Gia Huy_2387700022
 
-# BÁO CÁO KỸ THUẬT: MINI-CA (PKI & X.509)
-## THIẾT KẾ HẠ TẦNG KHÓA CÔNG KHAI, VÒNG ĐỜI CHỨNG CHỈ & CƠ CHẾ THU HỒI CRL/OCSP
+## BÁO CÁO KỸ THUẬT: MINI-CA (PKI & X.509)
+### THIẾT KẾ HẠ TẦNG KHÓA CÔNG KHAI, VÒNG ĐỜI CHỨNG CHỈ & CƠ CHẾ THU HỒI CRL/OCSP
 
 ---
 
@@ -12,20 +11,20 @@ Phân hệ `mini-ca` mô phỏng một hệ thống Hạ tầng Khóa Công khai
 
 ```text
 mini-ca/
-├── certs/                     # Thư mục chứa các tệp khóa bí mật và chứng chỉ PEM (.gitignore)
-│   ├── root_ca_key.pem        # Khóa riêng tư của Root CA
-│   ├── root_ca_cert.pem       # Chứng chỉ tự ký của Root CA
-│   ├── intermediate_key.pem   # Khóa riêng tư của Intermediate CA
-│   ├── intermediate_cert.pem  # Chứng chỉ của Intermediate CA do Root CA ký
-│   ├── Phuoc_Nguyen_key.pem   # Khóa riêng tư của End-entity (người dùng cuối)
-│   ├── Phuoc_Nguyen_cert.pem  # Chứng chỉ End-entity do Intermediate CA ký
-│   └── ca_crl.pem             # Danh sách thu hồi chứng chỉ (CRL) có chữ ký số
-├── ca_utils.py                # Quản lý khóa, xây dựng cấu trúc X.509 và thẩm định chuỗi tin cậy
-├── revoke_utils.py            # Quản lý danh sách thu hồi CRL và mô phỏng giao thức kiểm tra OCSP
-├── demo.py                    # Kịch bản thực thi tự động toàn bộ quy trình trên console
-├── demo_ui.py                 # Ứng dụng Desktop trực quan hóa 5 bước vòng đời chứng chỉ
-├── requirements.txt           # Danh sách gói phụ thuộc (cryptography)
-└── README.md                  # Báo cáo kỹ thuật chi tiết Mini-CA
+├── certs/
+│   ├── root_ca_key.pem
+│   ├── root_ca_cert.pem
+│   ├── intermediate_key.pem
+│   ├── intermediate_cert.pem
+│   ├── Phuoc_Nguyen_key.pem
+│   ├── Phuoc_Nguyen_cert.pem
+│   └── ca_crl.pem
+├── ca_utils.py
+├── revoke_utils.py
+├── demo.py
+├── demo_ui.py
+├── requirements.txt
+└── README.md
 ```
 
 ---

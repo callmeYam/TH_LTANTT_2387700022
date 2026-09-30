@@ -1,8 +1,7 @@
-### Họ và Tên: Phạm Gia Huy
-### MSSV: 2387700022
+### Họ và Tên: Phạm Gia Huy_2387700022
 
-# BÀI 2: MÃ HOÁ VÀ TRIỂN KHAI HẠ TẦNG KHÓA CÔNG KHAI (PKI)
-## BÁO CÁO TỔNG QUAN HỆ THỐNG MẬT MÃ ỨNG DỤNG & MÔ PHỎNG X.509 CA
+## BÀI 2: MÃ HOÁ VÀ TRIỂN KHAI HẠ TẦNG KHÓA CÔNG KHAI (PKI)
+### BÁO CÁO TỔNG QUAN HỆ THỐNG MẬT MÃ ỨNG DỤNG & MÔ PHỎNG X.509 CA
 
 ---
 
@@ -19,53 +18,53 @@ Bài thực hành số 2 tập trung vào việc nghiên cứu nguyên lý hoạ
 
 ```text
 Buoi2/
-├── crypto-toolkit/                     # Hợp phần 1: Thư viện mật mã đa năng
+├── crypto-toolkit/
 │   ├── files/
-│   │   ├── data.txt                    # Tệp tin văn bản gốc
-│   │   ├── data.txt.enc                # Tệp tin sau khi mã hóa AES-GCM
-│   │   └── data.txt.dec                # Tệp tin sau khi giải mã
+│   │   ├── data.txt
+│   │   ├── data.txt.enc
+│   │   └── data.txt.dec
 │   ├── securecrypto/
-│   │   ├── __init__.py                 # Khởi tạo gói thư viện v0.1.0
-│   │   ├── aes_utils.py                # KDF (PBKDF2) & Mã hóa/giải mã AES-256-GCM
-│   │   ├── hash_utils.py               # Băm mật khẩu an toàn với Argon2
-│   │   ├── rsa_utils.py                # Sinh cặp khóa RSA & Ký số/Xác thực chữ ký
-│   │   ├── cli.py                      # Giao diện dòng lệnh CLI (argparse)
-│   │   ├── api.py                      # RESTful API Service (Flask)
-│   │   └── app_gui.py                  # Giao diện Desktop GUI (Tkinter)
+│   │   ├── __init__.py
+│   │   ├── aes_utils.py
+│   │   ├── hash_utils.py
+│   │   ├── rsa_utils.py
+│   │   ├── cli.py
+│   │   ├── api.py
+│   │   └── app_gui.py
 │   ├── tests/
-│   │   ├── test_aes_utils.py           # Unit test cho module AES
-│   │   ├── test_hash_utils.py          # Unit test cho module Argon2 (Áp dụng Bypass GitSecure)
-│   │   └── test_rsa_utils.py           # Unit test cho module RSA
-│   ├── requirements.txt                # Thư viện phụ thuộc kiểm thử
-│   ├── setup.py                        # Cấu hình cài đặt package 'securecrypto'
-│   └── README.md                       # Báo cáo kỹ thuật chi tiết CryptoToolkit
-├── mini-ca/                            # Hợp phần 2: Hệ thống phân cấp CA & X.509
-│   ├── certs/                          # Thư mục lưu trữ khóa bí mật và chứng chỉ PEM (.gitignore)
-│   │   ├── root_ca_key.pem             # Khóa riêng tư Root CA
-│   │   ├── root_ca_cert.pem            # Chứng chỉ tự ký Root CA
-│   │   ├── intermediate_key.pem        # Khóa riêng tư Intermediate CA
-│   │   ├── intermediate_cert.pem       # Chứng chỉ Intermediate CA
-│   │   ├── Phuoc_Nguyen_key.pem        # Khóa riêng tư End-entity
-│   │   ├── Phuoc_Nguyen_cert.pem       # Chứng chỉ End-entity
-│   │   └── ca_crl.pem                  # Danh sách thu hồi chứng chỉ (CRL)
-│   ├── ca_utils.py                     # Quản lý khóa, tạo Root/Intermediate CA, cấp chứng chỉ
-│   ├── revoke_utils.py                 # Xây dựng CRL, thu hồi và kiểm tra trạng thái OCSP
-│   ├── demo.py                         # Kịch bản thực thi tự động toàn bộ vòng đời CA
-│   ├── demo_ui.py                      # Ứng dụng Desktop trực quan hóa vòng đời CA
-│   ├── requirements.txt                # Thư viện phụ thuộc cho Mini-CA
-│   └── README.md                       # Báo cáo kỹ thuật chi tiết Mini-CA
-├── ảnh/                                # Thư mục lưu trữ hình ảnh minh chứng thực nghiệm
-│   ├── 01_unit_tests.jpg               # Kết quả chạy 6/6 Unit Tests
-│   ├── 02_cli_encrypt_decrypt.jpg      # Kết quả mã hóa & giải mã qua CLI
-│   ├── 03_notepad_comparison.jpg       # Đối soát 3 trạng thái tệp tin trên Notepad
-│   ├── 04_crypto_gui.jpg               # Kết quả thực thi giao diện Desktop Crypto GUI
-│   ├── 05a_api_encrypt.jpg             # Kết quả gọi API /encrypt trên Postman (200 OK)
-│   ├── 05b_api_decrypt.jpg             # Kết quả gọi API /decrypt trên Postman (200 OK)
-│   ├── 06_ca_demo_cli.jpg              # Kết quả chạy script tự động demo.py của Mini-CA
-│   ├── 07_ca_certs_folder.jpg          # Cây thư mục chứng chỉ trong VS Code certs/
-│   └── 08_ca_demo_ui.jpg               # Kết quả chạy ứng dụng giao diện Mini CA Demo UI
-├── pytest.ini                          # Cấu hình tự động phát hiện test
-└── README.md                           # Báo cáo kỹ thuật tổng quan Buổi 2
+│   │   ├── test_aes_utils.py
+│   │   ├── test_hash_utils.py
+│   │   └── test_rsa_utils.py
+│   ├── requirements.txt
+│   ├── setup.py
+│   └── README.md
+├── mini-ca/
+│   ├── certs/
+│   │   ├── root_ca_key.pem
+│   │   ├── root_ca_cert.pem
+│   │   ├── intermediate_key.pem
+│   │   ├── intermediate_cert.pem
+│   │   ├── Phuoc_Nguyen_key.pem
+│   │   ├── Phuoc_Nguyen_cert.pem
+│   │   └── ca_crl.pem
+│   ├── ca_utils.py
+│   ├── revoke_utils.py
+│   ├── demo.py
+│   ├── demo_ui.py
+│   ├── requirements.txt
+│   └── README.md
+├── ảnh/
+│   ├── 01_unit_tests.jpg
+│   ├── 02_cli_encrypt_decrypt.jpg
+│   ├── 03_notepad_comparison.jpg
+│   ├── 04_crypto_gui.jpg
+│   ├── 05a_api_encrypt.jpg
+│   ├── 05b_api_decrypt.jpg
+│   ├── 06_ca_demo_cli.jpg
+│   ├── 07_ca_certs_folder.jpg
+│   └── 08_ca_demo_ui.jpg
+├── pytest.ini
+└── README.md
 ```
 
 ---
@@ -86,20 +85,12 @@ Buoi2/
 
 ## 4. Hướng dẫn cài đặt và thiết lập nhanh
 
-### 4.1. Chuẩn bị môi trường
 Yêu cầu hệ điều hành Windows, Linux hoặc macOS đã cài đặt Python 3.10+:
 
 ```bash
-# 1. Di chuyển vào thư mục CryptoToolkit
 cd Buoi2/crypto-toolkit
-
-# 2. Cài đặt gói thư viện securecrypto ở chế độ phát triển (Editable mode)
 pip install -e .
-
-# 3. Cài đặt các thư viện kiểm thử
 pip install -r requirements.txt
-
-# 4. Cài đặt phụ thuộc cho Mini-CA
 cd ../mini-ca
 pip install -r requirements.txt
 cd ..
@@ -114,7 +105,6 @@ Trong quá trình commit mã nguồn lên Git, hệ thống Pre-commit Hook **Gi
 ### 5.1. Tình huống bị chặn (Commit Blocked)
 Khi cài đặt file `tests/test_hash_utils.py` theo mã nguồn ban đầu của bài lab:
 ```python
-# Mật khẩu ban đầu dạng rõ (dài > 4 ký tự):
 password = ("StrongPass123!")
 ```
 Khi chạy lệnh `git commit -m "[add] crypto-toolkit"`, GitSecure lập tức phát hiện và dừng tiến trình:
@@ -141,7 +131,7 @@ COMMIT BLOCKED by GitSecure:
 
 Dưới đây là các hình ảnh minh chứng thực tế được chụp trực tiếp từ hệ thống:
 
-### 📸 1. Kết quả kiểm thử Unit Tests (CryptoToolkit)
+### 1. Kết quả kiểm thử Unit Tests (CryptoToolkit)
 * **Mô tả:** Chạy toàn bộ 6 test cases trong thư mục `tests/` kiểm tra tính chính xác của thuật toán AES, Argon2 và RSA (100% Passed).
 * **Đường dẫn ảnh:** `ảnh/01_unit_tests.jpg`
 
@@ -149,7 +139,7 @@ Dưới đây là các hình ảnh minh chứng thực tế được chụp tr�
 
 ---
 
-### 📸 2. Kết quả mã hóa và giải mã qua CLI
+### 2. Kết quả mã hóa và giải mã qua CLI
 * **Mô tả:** Thực hiện lệnh mã hóa file `data.txt` ra `data.txt.enc` với mật khẩu, sau đó giải mã về `data.txt.dec` và đối soát nội dung gốc `HUTECH University`.
 * **Đường dẫn ảnh:** `ảnh/02_cli_encrypt_decrypt.jpg`
 
@@ -157,7 +147,7 @@ Dưới đây là các hình ảnh minh chứng thực tế được chụp tr�
 
 ---
 
-### 📸 3. Đối soát tệp tin trên Notepad (Bản rõ vs Đã mã hóa vs Giải mã)
+### 3. Đối soát tệp tin trên Notepad (Bản rõ vs Đã mã hóa vs Giải mã)
 * **Mô tả:** Mở cùng lúc 3 tệp `data.txt` (bản rõ gốc), `data.txt.enc` (dữ liệu mã hóa nhị phân AES-GCM không đọc được) và `data.txt.dec` (khôi phục 100% nội dung gốc `HUTECH University`).
 * **Đường dẫn ảnh:** `ảnh/03_notepad_comparison.jpg`
 
@@ -165,7 +155,7 @@ Dưới đây là các hình ảnh minh chứng thực tế được chụp tr�
 
 ---
 
-### 📸 4. Giao diện Desktop GUI (CryptoToolkit)
+### 4. Giao diện Desktop GUI (CryptoToolkit)
 * **Mô tả:** Cửa sổ đồ họa Tkinter nhập mật khẩu, thao tác chọn file để Encrypt và Decrypt hiển thị Key kết quả.
 * **Đường dẫn ảnh:** `ảnh/04_crypto_gui.jpg`
 
@@ -173,7 +163,7 @@ Dưới đây là các hình ảnh minh chứng thực tế được chụp tr�
 
 ---
 
-### 📸 5. Kiểm thử RESTful API trên Postman (/encrypt & /decrypt)
+### 5. Kiểm thử RESTful API trên Postman (/encrypt & /decrypt)
 * **Mô tả:** Gửi yêu cầu HTTP POST `multipart/form-data` tới endpoint `/encrypt` và `/decrypt` của Flask API, cả hai đều nhận kết quả `200 OK` hoàn hảo.
 * **Đường dẫn ảnh:** `ảnh/05a_api_encrypt.jpg` và `ảnh/05b_api_decrypt.jpg`
 
@@ -183,7 +173,7 @@ Dưới đây là các hình ảnh minh chứng thực tế được chụp tr�
 
 ---
 
-### 📸 6. Chạy kịch bản tự động vòng đời CA (`demo.py`)
+### 6. Chạy kịch bản tự động vòng đời CA (`demo.py`)
 * **Mô tả:** Terminal chạy kịch bản hoàn chỉnh tạo Root CA, Intermediate CA, cấp chứng chỉ End-entity, kiểm tra chuỗi, thu hồi chứng chỉ và kiểm tra trạng thái OCSP (`Revoked`).
 * **Đường dẫn ảnh:** `ảnh/06_ca_demo_cli.jpg`
 
@@ -191,7 +181,7 @@ Dưới đây là các hình ảnh minh chứng thực tế được chụp tr�
 
 ---
 
-### 📸 7. Danh sách tệp tin chứng chỉ trong thư mục `certs/`
+### 7. Danh sách tệp tin chứng chỉ trong thư mục `certs/`
 * **Mô tả:** Cấu trúc tệp tin PEM được tạo tự động trên cây thư mục VS Code bao gồm khóa bí mật, chứng chỉ X.509 và file danh sách thu hồi `ca_crl.pem`.
 * **Đường dẫn ảnh:** `ảnh/07_ca_certs_folder.jpg`
 
@@ -199,7 +189,7 @@ Dưới đây là các hình ảnh minh chứng thực tế được chụp tr�
 
 ---
 
-### 📸 8. Giao diện Desktop trực quan hóa Mini-CA (`demo_ui.py`)
+### 8. Giao diện Desktop trực quan hóa Mini-CA (`demo_ui.py`)
 * **Mô tả:** Ứng dụng Tkinter cho phép tương tác từng bước qua 5 nút chức năng của hệ thống CA kèm hộp hiển thị nhật ký và thông báo trạng thái thu hồi.
 * **Đường dẫn ảnh:** `ảnh/08_ca_demo_ui.jpg`
 

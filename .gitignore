@@ -14,4 +14,5 @@ build/
 dist/
 .pytest_cache/
 upload/
+.env
 

@@ -3,13 +3,6 @@
 
 ---
 
-## Mục lục các buổi thực hành
-
-* 📁 [**Buổi 1: Xác thực đầu vào, Git Hooks & Nhật ký an toàn**](Buoi1/Lab1/README.md)
-* 📁 [**Buổi 2: Mã hóa hiện đại & Triển khai Hạ tầng Khóa công khai (PKI / X.509)**](Buoi2/README.md)
-
----
-
 ## Cấu trúc thư mục dự án
 
 ```
@@ -52,6 +45,25 @@ TH_LTANTT_2387700022/
 │   │   └── README.md
 │   ├── ảnh/
 │   ├── pytest.ini
+│   └── README.md
+├── Buoi3/
+│   ├── secure-chat/
+│   │   ├── certs/
+│   │   ├── openssl.cnf
+│   │   ├── make-certs.bat
+│   │   ├── message_encryption.py
+│   │   ├── connection_manager.py
+│   │   ├── room_manager.py
+│   │   ├── server.py
+│   │   └── client.py
+│   ├── netrecon/
+│   │   ├── modules/
+│   │   ├── static/
+│   │   ├── templates/
+│   │   ├── requirements.txt
+│   │   ├── cli.py
+│   │   └── app.py
+│   ├── ảnh/
 │   └── README.md
 ├── .gitignore
 └── README.md

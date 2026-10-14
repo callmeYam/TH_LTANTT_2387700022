@@ -65,6 +65,27 @@ TH_LTANTT_2387700022/
 │   │   └── app.py
 │   ├── ảnh/
 │   └── README.md
+├── Buoi4/
+│   ├── web-vuln-scanner/
+│   │   ├── report/
+│   │   ├── scanners/
+│   │   ├── tests/
+│   │   ├── ui/
+│   │   ├── requirements.txt
+│   │   ├── __init__.py
+│   │   └── main.py
+│   ├── jwt-security-tools/
+│   │   ├── api_gateway/
+│   │   ├── jwt_cracker/
+│   │   ├── jwt_validator/
+│   │   ├── oauth_client/
+│   │   ├── token_manager/
+│   │   ├── tests/
+│   │   ├── requirements.txt
+│   │   ├── pytest.ini
+│   │   └── main.py
+│   ├── ảnh/
+│   └── README.md
 ├── .gitignore
 └── README.md
 ```

@@ -121,183 +121,74 @@ pip install -r Buoi4/jwt-security-tools/requirements.txt
 
 ---
 
-## 5. Hướng dẫn chi tiết từng bước thực hành & Chụp ảnh minh chứng
-
-Dưới đây là **11 bước thực hành** chi tiết kèm hướng dẫn chụp màn hình để hoàn thiện báo cáo và lưu vào thư mục `Buoi4/ảnh/`:
-
----
+## 5. Thực nghiệm và minh chứng
 
 ### HỢP PHẦN 1: BỘ CÔNG CỤ QUÉT LỖ HỔNG (WEBVULNSCANNER)
 
 #### Bước 1: Chạy và kiểm tra Unit Test WebVulnScanner
-* **Thao tác:** Mở Terminal, di chuyển vào thư mục `Buoi4/web-vuln-scanner` và chạy unittest:
+* **Thao tác:** Mở Terminal, di chuyển vào thư mục `Buoi4/web-vuln-scanner` và chạy unittest kiểm thử toàn diện 4 module scanner và report generator:
   ```powershell
   cd "Buoi4\web-vuln-scanner"
-  python -m unittest discover tests
+  ..\..\venv\Scripts\python -m unittest discover tests
   ```
-* **Chụp ảnh:** Màn hình Terminal hiển thị kết quả chạy 9 unit test thành công:
-  `.........`
-  `Ran 9 tests in ...s`
-  `OK`
-* **Lưu file ảnh:** `Buoi4/ảnh/01_web_scanner_unittest.jpg`
-
-#### Bước 2: Chạy kiểm tra chương trình chính `main.py`
-* **Thao tác:** Tại thư mục `Buoi4/web-vuln-scanner`, chạy lệnh:
-  ```powershell
-  python .\main.py
-  ```
-* **Chụp ảnh:** Màn hình Terminal hiển thị kết quả quét tổng hợp:
-  `=== Vulnerability Report ===`
-  `Param: id, Desc: Potential SQL Injection, Risk: Critical`
-  `Param: N/A, Desc: None, Risk: None`
-  `Param: url, Desc: Potential SSRF to internal resource, Risk: High`
-* **Lưu file ảnh:** `Buoi4/ảnh/02_web_scanner_main.jpg`
-
-#### Bước 3: Khởi động Web Server Scanner
-* **Thao tác:** Chạy máy chủ Flask UI:
-  ```powershell
-  python .\ui\app.py
-  ```
-* **Chụp ảnh:** Terminal hiển thị thông báo ứng dụng Flask đang phục vụ tại `http://127.0.0.1:5000/`.
-* **Lưu file ảnh:** `Buoi4/ảnh/03_web_scanner_flask_run.jpg`
-
-#### Bước 4: Giao diện Form kiểm thử Web Scanner
-* **Thao tác:** Mở trình duyệt web truy cập `http://127.0.0.1:5000/`. Nhập URL kiểm thử (ví dụ: `http://testphp.vulnweb.com/artists.php?artist=1'` hoặc `http://example.com/page?input=<script>alert(1)</script>&id=' OR '1'='1&url=http://127.0.0.1/admin`), tích chọn cả 4 công cụ (XSS, SQL, CSRF, SSRF).
-* **Chụp ảnh:** Giao diện Form trên trình duyệt trước khi bấm "Bắt đầu kiểm thử".
-* **Lưu file ảnh:** `Buoi4/ảnh/04_web_scanner_ui_form.jpg`
-
-#### Bước 5: Báo cáo kết quả quét lỗ hổng trên Web UI
-* **Thao tác:** Bấm nút **"Bắt đầu kiểm thử"** để gửi request và xem trang kết quả `result.html`.
-* **Chụp ảnh:** Giao diện web hiển thị các hộp cảnh báo lỗ hổng màu đỏ/cam/xanh tương ứng các mức độ rủi ro (XSS, SQL Injection, CSRF, SSRF).
-* **Lưu file ảnh:** `Buoi4/ảnh/05_web_scanner_ui_result.jpg`
-
-#### Bước 6: Commit phần WebVulnScanner lên Git
-* **Thao tác:** Mở Terminal tại thư mục gốc dự án và thực hiện commit:
-  ```powershell
-  git add Buoi4/web-vuln-scanner/
-  git commit -m "[add] web vuln scanner"
-  ```
-* **Chụp ảnh:** Terminal hiển thị thông báo commit thành công các tệp tin của `web-vuln-scanner`.
-* **Lưu file ảnh:** `Buoi4/ảnh/06_git_commit_web_scanner.jpg`
-
----
-
-### HỢP PHẦN 2: BẢO MẬT TOKEN & API GATEWAY (JWTSECURE)
-
-#### Bước 7: Chạy kiểm thử toàn diện bằng Pytest
-* **Thao tác:** Mở Terminal, di chuyển vào thư mục `Buoi4/jwt-security-tools` và chạy lệnh:
-  ```powershell
-  cd "..\jwt-security-tools"
-  pytest tests/
-  ```
-* **Chụp ảnh:** Màn hình Terminal hiển thị kết quả kiểm thử hoàn thành với 7 test passed:
-  `collected 7 items`
-  `tests\test_api_gateway.py ..`
-  `tests\test_cracker.py .`
-  `tests\test_oauth_client.py .`
-  `tests\test_token_manager.py .`
-  `tests\test_validator.py ..`
-  `7 passed, ... warnings in ...s`
-* **Lưu file ảnh:** `Buoi4/ảnh/07_jwt_pytest.jpg`
-
-#### Bước 8: Chạy chương trình chính `main.py` để sinh Token và khởi động API Gateway
-* **Thao tác:** Tại thư mục `Buoi4/jwt-security-tools`, chạy:
-  ```powershell
-  python .\main.py
-  ```
-* **Chụp ảnh:** Màn hình Terminal hiển thị chuỗi `Access Token` và `Refresh Token` được sinh ra, kèm thông báo Flask Server đang lắng nghe trên cổng 5000.
-* **Lưu file ảnh:** `Buoi4/ảnh/08_jwt_main_run.jpg`
-
-#### Bước 9: Kiểm tra xác thực Bearer Token bằng cURL
-* **Thao tác:** Để nguyên Terminal đang chạy Flask ở Bước 8. Mở một cửa sổ Terminal mới (hoặc Command Prompt `cmd`), copy chuỗi `Access Token` từ Bước 8 và thực thi lệnh cURL:
-  ```cmd
-  curl -H "Authorization: Bearer <access_token_vua_copy>" http://127.0.0.1:5000/protected
-  ```
-* **Chụp ảnh:** Cửa sổ Terminal hiển thị kết quả JSON trả về thành công:
-  `{"message":"Access granted","user":"phuoc"}` (hoặc tên user tương ứng).
-* **Lưu file ảnh:** `Buoi4/ảnh/09_jwt_curl_test.jpg`
-
-#### Bước 10: Minh chứng GitSecure chặn commit do phát hiện Sensitive Secret
-* **Thao tác:** Tại Terminal thư mục gốc dự án, thực hiện thêm tệp và commit:
-  ```powershell
-  git add .
-  git commit -m "[add] jwt security tools"
-  ```
-* **Chụp ảnh:** Màn hình Terminal hiển thị cơ chế GitSecure Pre-commit Hook hoạt động và chặn commit:
-  `COMMIT BLOCKED by GitSecure:`
-  `- Sensitive info found in .../main.py: pattern secret\s*=\s*['"][A-Za-z0-9_\-]{8,}['"]`
-  `- Sensitive info found in .../test_api_gateway.py: pattern secret\s*=\s*...`
-  `- Sensitive info found in .../test_cracker.py: pattern secret\s*=\s*...`
-  `- Sensitive info found in .../test_validator.py: pattern secret\s*=\s*...`
-* **Lưu file ảnh:** `Buoi4/ảnh/10_git_commit_blocked_by_gitsecure.jpg`
-
-#### Bước 11: Khử thông tin nhạy cảm, commit và push thành công lên GitHub
-* **Thao tác:** Tiến hành xử lý biến `secret` trong 4 tệp tin bị cảnh báo (sử dụng biến môi trường hoặc chuỗi an toàn không khớp regex nhạy cảm), sau đó chạy lại lệnh commit và push:
-  ```powershell
-  git add .
-  git commit -m "[add] jwt security tools"
-  git push origin main
-  ```
-* **Chụp ảnh:** Terminal hiển thị thông báo `GitSecure: All checks passed.`, commit thành công và push lên nhánh `main` của GitHub repository.
-* **Lưu file ảnh:** `Buoi4/ảnh/11_git_commit_push_jwt_success.jpg`
-
----
-
-## 6. Danh mục hình ảnh thực nghiệm thực tế (Output Screenshots)
-
-Dưới đây là các hình ảnh minh chứng thực tế được thực hiện trực tiếp trên hệ thống và lưu tại thư mục `Buoi4/ảnh/`:
-
-### 1. Kiểm tra Unit Test WebVulnScanner (9/9 Passed)
-* **Mô tả:** Chạy `python -m unittest discover tests` kiểm thử toàn diện 4 module scanner và report generator.
-* **Đường dẫn:** `ảnh/01_web_scanner_unittest.jpg`
 
 ![Unit Test Web Scanner](ảnh/01_web_scanner_unittest.jpg)
 
 ---
 
-### 2. Chạy thử nghiệm chương trình chính `main.py` WebVulnScanner
-* **Mô tả:** Phân tích chuỗi URL và nội dung HTML giả lập, in ra báo cáo các nguy cơ SQLi, SSRF và CSRF.
-* **Đường dẫn:** `ảnh/02_web_scanner_main.jpg`
+#### Bước 2: Chạy kiểm tra chương trình chính `main.py`
+* **Thao tác:** Tại thư mục `Buoi4/web-vuln-scanner`, chạy lệnh kiểm tra phân tích tổng hợp:
+  ```powershell
+  ..\..\venv\Scripts\python .\main.py
+  ```
 
 ![Chạy Main Web Scanner](ảnh/02_web_scanner_main.jpg)
 
 ---
 
-### 3. Giao diện Web Vulnerability Scanner
-* **Mô tả:** Form cho phép nhập URL mục tiêu và chọn các module kiểm thử an ninh web (XSS, SQLi, CSRF, SSRF).
-* **Đường dẫn:** `ảnh/04_web_scanner_ui_form.jpg`
+#### Bước 3: Giao diện Form kiểm thử Web Scanner
+* **Thao tác:** Khởi động máy chủ Flask UI (`python .\ui\app.py`), mở trình duyệt web truy cập `http://127.0.0.1:5000/`. Nhập URL kiểm thử (ví dụ: `http://example.com/page?input=<script>alert(1)</script>&id=' OR '1'='1&url=http://127.0.0.1/admin`), tích chọn cả 4 công cụ (XSS, SQL, CSRF, SSRF):
 
 ![Form Web Scanner](ảnh/04_web_scanner_ui_form.jpg)
 
 ---
 
-### 4. Báo cáo lỗ hổng hiển thị trên giao diện Web (Khớp 100% Slide bài giảng)
-* **Mô tả:** Kết quả trực quan phân loại rủi ro HIGH, MEDIUM với đầy đủ thẻ XSS màu đỏ rực rỡ và thẻ CSRF.
-* **Đường dẫn:** `ảnh/05_web_scanner_ui_result.jpg`
+#### Bước 4: Báo cáo kết quả quét lỗ hổng trên Web UI (Khớp 100% Slide bài giảng)
+* **Thao tác:** Nhập URL mục tiêu kiểm thử `http://testphp.vulnweb.com/artists.php?artist=1'` và bấm nút **"Bắt đầu kiểm thử"** để nhận kết quả phân tích lỗ hổng:
 
 ![Kết quả Web Scanner](ảnh/05_web_scanner_ui_result.jpg)
 
 ---
 
-### 5. Kiểm thử Pytest bộ công cụ JWTSecure (7/7 Passed)
-* **Mô tả:** Kiểm thử các chức năng APIGateway, JWTCracker, OAuthClient, TokenManager, JWTValidator đạt 7/7 test passed.
-* **Đường dẫn:** `ảnh/07_jwt_pytest.jpg`
+### HỢP PHẦN 2: BẢO MẬT TOKEN & API GATEWAY (JWTSECURE)
+
+#### Bước 5: Chạy kiểm thử toàn diện bằng Pytest
+* **Thao tác:** Mở Terminal, di chuyển vào thư mục `Buoi4/jwt-security-tools` và chạy Pytest kiểm thử APIGateway, JWTCracker, OAuthClient, TokenManager, JWTValidator (7/7 Passed):
+  ```powershell
+  cd "..\jwt-security-tools"
+  ..\..\venv\Scripts\pytest tests/
+  ```
 
 ![Pytest JWTSecure](ảnh/07_jwt_pytest.jpg)
 
 ---
 
-### 6. Khởi động chương trình JWTSecure `main.py` cho user Huy
-* **Mô tả:** Sinh cặp Access Token và Refresh Token cho người dùng Huy, đồng thời kích hoạt cổng APIGateway.
-* **Đường dẫn:** `ảnh/08_jwt_main_run.jpg`
+#### Bước 6: Khởi động chương trình chính `main.py` cấp phát Token cho user Huy
+* **Thao tác:** Tại thư mục `Buoi4/jwt-security-tools`, chạy:
+  ```powershell
+  ..\..\venv\Scripts\python .\main.py
+  ```
 
 ![Chạy Main JWTSecure](ảnh/08_jwt_main_run.jpg)
 
 ---
 
-### 7. Thử nghiệm xác thực tài nguyên được bảo vệ bằng cURL
-* **Mô tả:** Gửi Bearer Token qua header `Authorization` đến endpoint `/protected` và nhận phản hồi `{"message":"Access granted","user":"Huy"}`.
-* **Đường dẫn:** `ảnh/09_jwt_curl_test.jpg`
+#### Bước 7: Kiểm tra xác thực Bearer Token bằng cURL
+* **Thao tác:** Mở cửa sổ Terminal mới (hoặc Command Prompt `cmd`), copy chuỗi `Access Token` của user Huy và thực thi lệnh cURL để kiểm tra quyền truy cập endpoint `/protected`:
+  ```cmd
+  curl -H "Authorization: Bearer <access_token_cua_Huy>" http://127.0.0.1:5000/protected
+  ```
 
 ![Xác thực cURL](ảnh/09_jwt_curl_test.jpg)
+
 

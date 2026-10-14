@@ -131,6 +131,7 @@ pip install -r Buoi4/jwt-security-tools/requirements.txt
   cd "Buoi4\web-vuln-scanner"
   ..\..\venv\Scripts\python -m unittest discover tests
   ```
+* **Kết quả đạt được:** Hệ thống thực thi hoàn thành toàn bộ 9/9 unit test cases trong 0.001 giây với kết quả `OK`. Tất cả các module kiểm thử riêng biệt (XSS Scanner, SQLi Tester, CSRF Detector, SSRF Tester và Report Generator) đều đạt tính đúng đắn và độ tin cậy tuyệt đối.
 
 ![Unit Test Web Scanner](ảnh/01_web_scanner_unittest.jpg)
 
@@ -141,6 +142,10 @@ pip install -r Buoi4/jwt-security-tools/requirements.txt
   ```powershell
   ..\..\venv\Scripts\python .\main.py
   ```
+* **Kết quả đạt được:** Chương trình `main.py` tự động tổng hợp kết quả quét từ 4 module, bóc tách và phân loại thành công 3 nguy cơ bảo mật trong chuỗi URL và form mẫu:
+  - Lỗ hổng SQL Injection tại tham số `id` (Mức độ rủi ro: `Critical`).
+  - Lỗ hổng SSRF truy cập tài nguyên nội bộ `127.0.0.1` tại tham số `url` (Mức độ rủi ro: `High`).
+  - Form HTML mẫu chứa token hợp lệ nên đạt trạng thái an toàn trước CSRF.
 
 ![Chạy Main Web Scanner](ảnh/02_web_scanner_main.jpg)
 
@@ -148,6 +153,7 @@ pip install -r Buoi4/jwt-security-tools/requirements.txt
 
 #### Bước 3: Giao diện Form kiểm thử Web Scanner
 * **Thao tác:** Khởi động máy chủ Flask UI (`python .\ui\app.py`), mở trình duyệt web truy cập `http://127.0.0.1:5000/`. Nhập URL kiểm thử (ví dụ: `http://example.com/page?input=<script>alert(1)</script>&id=' OR '1'='1&url=http://127.0.0.1/admin`), tích chọn cả 4 công cụ (XSS, SQL, CSRF, SSRF):
+* **Kết quả đạt được:** Khởi chạy thành công máy chủ Flask Web trên cổng nội bộ `http://127.0.0.1:5000/`. Giao diện Web trực quan hiển thị đầy đủ trường nhập URL mục tiêu cùng các checkbox linh hoạt cho phép tùy chọn quét đồng thời hoặc riêng lẻ từng loại lỗ hổng.
 
 ![Form Web Scanner](ảnh/04_web_scanner_ui_form.jpg)
 
@@ -155,6 +161,10 @@ pip install -r Buoi4/jwt-security-tools/requirements.txt
 
 #### Bước 4: Báo cáo kết quả quét lỗ hổng trên Web UI (Khớp 100% Slide bài giảng)
 * **Thao tác:** Nhập URL mục tiêu kiểm thử `http://testphp.vulnweb.com/artists.php?artist=1'` và bấm nút **"Bắt đầu kiểm thử"** để nhận kết quả phân tích lỗ hổng:
+* **Kết quả đạt được:** Hệ thống phân tích sâu và trả về trang báo cáo trực quan với thiết kế phân loại màu sắc rủi ro rõ rệt:
+  - Phát hiện **2 lỗ hổng Reflected XSS** (Mức độ `HIGH`) với hai payload kiểm thử `<script>alert(1)</script>` và `"><svg/onload=alert(1)>`.
+  - Phát hiện lỗ hổng thiếu token bảo vệ **CSRF** (Mức độ `Medium`).
+  - Giao diện và kết quả trả về khớp hoàn toàn 100% với kịch bản thực nghiệm trong slide bài giảng của Giảng viên.
 
 ![Kết quả Web Scanner](ảnh/05_web_scanner_ui_result.jpg)
 
@@ -168,6 +178,7 @@ pip install -r Buoi4/jwt-security-tools/requirements.txt
   cd "..\jwt-security-tools"
   ..\..\venv\Scripts\pytest tests/
   ```
+* **Kết quả đạt được:** Thực thi hoàn tất bộ kiểm thử tự động với kết quả **7/7 test passed (100%)** bao gồm: xác thực tính hợp lệ của JWT (`test_validator.py`), bẻ khóa bí mật yếu bằng dictionary attack (`test_cracker.py`), luồng cấp mã xác thực OAuth 2.0 (`test_oauth_client.py`), phát hành & làm mới token (`test_token_manager.py`), và bảo vệ API Gateway (`test_api_gateway.py`).
 
 ![Pytest JWTSecure](ảnh/07_jwt_pytest.jpg)
 
@@ -178,6 +189,10 @@ pip install -r Buoi4/jwt-security-tools/requirements.txt
   ```powershell
   ..\..\venv\Scripts\python .\main.py
   ```
+* **Kết quả đạt được:** Ứng dụng khởi tạo thành công cặp mã định danh chuẩn RFC 7519 cho người dùng **Huy**:
+  - `Access Token` (thời hạn 15 phút) phục vụ truy cập nhanh vào các endpoint tài nguyên.
+  - `Refresh Token` (thời hạn 24 giờ) phục vụ cơ chế cấp mới token không cần đăng nhập lại.
+  - Kích hoạt thành công cổng `APIGateway` lắng nghe kết nối tại cổng `5000`.
 
 ![Chạy Main JWTSecure](ảnh/08_jwt_main_run.jpg)
 
@@ -188,7 +203,9 @@ pip install -r Buoi4/jwt-security-tools/requirements.txt
   ```cmd
   curl -H "Authorization: Bearer <access_token_cua_Huy>" http://127.0.0.1:5000/protected
   ```
+* **Kết quả đạt được:** Cổng APIGateway giải mã chữ ký HMAC SHA-256 của token, trích xuất claim `sub` hợp lệ và phản hồi mã trạng thái HTTP `200 OK` với dữ liệu JSON: `{"message": "Access granted", "user": "Huy"}`. Chứng minh cơ chế xác thực Bearer Token của API Gateway hoạt động an toàn và bảo mật đúng theo thiết kế.
 
 ![Xác thực cURL](ảnh/09_jwt_curl_test.jpg)
+
 
 

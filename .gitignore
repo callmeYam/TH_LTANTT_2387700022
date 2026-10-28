@@ -15,4 +15,8 @@ dist/
 .pytest_cache/
 upload/
 .env
+node_modules/
+.docusaurus/
+config.toml
+.runner_system_id
 

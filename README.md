@@ -105,6 +105,19 @@ TH_LTANTT_2387700022/
 │   │   └── requirements.txt
 │   ├── ảnh/
 │   └── README.md
+├── Buoi6/
+│   ├── gitlab-ci-basic/
+│   │   └── .gitlab-ci.yml
+│   ├── pipeline-tutorial/
+│   │   ├── blog/
+│   │   ├── docs/
+│   │   ├── src/
+│   │   ├── static/
+│   │   ├── .gitlab-ci.yml
+│   │   ├── docusaurus.config.js
+│   │   └── package.json
+│   ├── ảnh/
+│   └── README.md
 ├── .gitignore
 └── README.md
 ```
